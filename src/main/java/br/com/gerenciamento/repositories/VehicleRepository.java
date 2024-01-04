@@ -1,7 +1,7 @@
-package br.com.gerenciamento.core.repositories;
+package br.com.gerenciamento.repositories;
 
-import br.com.gerenciamento.core.domain.employee.Employee;
-import br.com.gerenciamento.core.domain.vehicle.Vehicle;
+import br.com.gerenciamento.core.entity.employee.Employee;
+import br.com.gerenciamento.core.entity.vehicle.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

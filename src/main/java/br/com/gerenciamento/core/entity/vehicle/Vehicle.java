@@ -1,4 +1,4 @@
-package br.com.gerenciamento.core.domain.vehicle;
+package br.com.gerenciamento.core.entity.vehicle;
 
 
 import jakarta.persistence.*;

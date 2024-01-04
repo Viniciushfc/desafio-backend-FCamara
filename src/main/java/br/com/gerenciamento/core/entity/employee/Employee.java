@@ -1,4 +1,4 @@
-package br.com.gerenciamento.core.domain.employee;
+package br.com.gerenciamento.core.entity.employee;
 
 
 import jakarta.persistence.*;
