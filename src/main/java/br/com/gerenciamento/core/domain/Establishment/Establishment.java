@@ -1,19 +1,20 @@
-package br.com.gerenciamento.core.entity.employee;
+package br.com.gerenciamento.core.domain.Establishment;
 
 
+import br.com.gerenciamento.dtos.EstablishmentDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 
-@Entity(name = "employees")
-@Table(name = "employees")
+@Entity(name = "establishment")
+@Table(name = "establishment")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Employee {
+public class Establishment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,4 +34,12 @@ public class Employee {
     private String amountVacanciesCar;
 
 
+    public Establishment(EstablishmentDTO dto){
+        this.name = dto.name();
+        this.document = dto.document();
+        this.address = dto.address();
+        this.telephone = dto.telephone();
+        this.amountVacanciesBike = dto.amountVacanciesBike();
+        this.amountVacanciesCar = dto.amountVacanciesCar();
+    };
 }
