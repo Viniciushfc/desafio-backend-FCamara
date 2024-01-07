@@ -17,48 +17,106 @@ public class EstablishmentService {
 
     //Salvar no Banco de Dados.
     public void saveEstablishment(Establishment establishment) {
-        this.repository.save(establishment);
+        try {
+            this.repository.save(establishment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //Criar um estabelecimento.
     public Establishment createEstablishment(EstablishmentDTO dto) {
-        Establishment establishmentNew = new Establishment(dto);
-        this.saveEstablishment(establishmentNew);
-        return establishmentNew;
+        try {
+            Establishment establishmentNew = new Establishment(dto);
+            this.saveEstablishment(establishmentNew);
+            return establishmentNew;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     //Listar todos os estabelecimento.
     public List<Establishment> getAllEstablishment() {
-        return repository.findAll();
+        try {
+            return repository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     //Procurar estabelecimento por ID.
     public Establishment findEstablishmentById(Long id) {
-        return repository.findEstablishmentById(id).orElse(null);
+        try {
+            return repository.findEstablishmentById(id).orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     //Procurar estabelecimento por CNPJ.
-    public Establishment findEstablishmentById(String document) {
-        return repository.findEstablishmentByDocument(document).orElse(null);
+    public Establishment findEstablishmentByDocument(String document) {
+        try {
+            return repository.findEstablishmentByDocument(document).orElse(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    //Atualizar um estabelecimento.
+    public Establishment updateEstablishment(EstablishmentDTO dto) {
+        try {
+            Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(dto.document());
+
+            if (optionalEstablishment.isPresent()) {
+                Establishment establishment = optionalEstablishment.get();
+
+                establishment.setName(dto.name());
+                establishment.setName(dto.document());
+                establishment.setName(dto.address());
+                establishment.setName(dto.telephone());
+                establishment.setName(dto.amountVacanciesBike());
+                establishment.setName(dto.amountVacanciesCar());
+
+                return repository.save(establishment);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
     //Deletar um estabelecimento por ID.
     public void deleteEstablishmentById(Long id) {
-        this.repository.deleteById(id);
+        try {
+            this.repository.deleteById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
     //Deletar um estabelecimento por CNPJ.
     public void deleteEstablishmentByDocument(String document) {
+        try {
+            Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
 
-        Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
+            if (optionalEstablishment.isPresent()) {
 
-        if (optionalEstablishment.isPresent()) {
+                Establishment establishment = optionalEstablishment.get();
 
-            Establishment establishment = optionalEstablishment.get();
+                repository.delete(establishment);
 
-            repository.delete(establishment);
-
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
