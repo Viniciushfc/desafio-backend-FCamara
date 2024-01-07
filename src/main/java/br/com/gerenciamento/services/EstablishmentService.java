@@ -67,6 +67,7 @@ public class EstablishmentService {
 
     }
 
+    //Update
     //Atualizar um estabelecimento.
     public Establishment updateEstablishment(EstablishmentDTO dto) {
         try {
