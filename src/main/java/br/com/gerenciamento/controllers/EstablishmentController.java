@@ -29,4 +29,11 @@ public class EstablishmentController {
         List<Establishment> establishments = this.establishmentService.getAllEstablishment();
         return new ResponseEntity<>(establishments, HttpStatus.OK);
     }
+
+    @PutMapping
+    public ResponseEntity<Establishment> updateEstablishments(@RequestBody EstablishmentDTO dto){
+        Establishment establishment = establishmentService.updateEstablishment(dto);
+        return new ResponseEntity<>(establishment, HttpStatus.OK);
+    }
+
 }
