@@ -67,7 +67,7 @@ public class EstablishmentService {
 
     }
 
-    //Update
+
     //Atualizar um estabelecimento.
     public Establishment updateEstablishment(EstablishmentDTO dto) {
         try {
@@ -77,11 +77,11 @@ public class EstablishmentService {
                 Establishment establishment = optionalEstablishment.get();
 
                 establishment.setName(dto.name());
-                establishment.setName(dto.document());
-                establishment.setName(dto.address());
-                establishment.setName(dto.telephone());
-                establishment.setName(dto.amountVacanciesBike());
-                establishment.setName(dto.amountVacanciesCar());
+                establishment.setDocument(dto.document());
+                establishment.setAddress(dto.address());
+                establishment.setTelephone(dto.telephone());
+                establishment.setAmountVacanciesBike(dto.amountVacanciesBike());
+                establishment.setAmountVacanciesCar(dto.amountVacanciesCar());
 
                 return repository.save(establishment);
             } else {
