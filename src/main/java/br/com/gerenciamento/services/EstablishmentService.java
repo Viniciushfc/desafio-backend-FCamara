@@ -95,16 +95,17 @@ public class EstablishmentService {
     }
 
     //Deletar um estabelecimento por ID.
-    public void deleteEstablishmentById(Long id) {
+    public Establishment deleteEstablishmentById(Long id) {
         try {
-            this.repository.deleteById(id);
+            if(repository.existsById(id)) {
+                this.repository.deleteById(id);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
-
-    //Deletar um estabelecimento por CNPJ.
     public void deleteEstablishmentByDocument(String document) {
         try {
             Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
