@@ -30,14 +30,21 @@ public class EstablishmentController {
         return new ResponseEntity<>(establishments, HttpStatus.OK);
     }
 
+    @GetMapping("/{document}")
+    public ResponseEntity<Establishment> getEstablishmentByDocument(@PathVariable String document) {
+        Establishment establishment = this.establishmentService.findEstablishmentByDocument(document);
+        return new ResponseEntity<>(establishment, HttpStatus.OK);
+    }
+
+
     @PutMapping
-    public ResponseEntity<Establishment> updateEstablishments(@RequestBody EstablishmentDTO dto){
+    public ResponseEntity<Establishment> updateEstablishments(@RequestBody EstablishmentDTO dto) {
         Establishment establishment = establishmentService.updateEstablishment(dto);
         return new ResponseEntity<>(establishment, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteByIdEstablishment(@PathVariable Long id){
+    public void deleteEstablishmentById(@PathVariable Long id) {
         Establishment establishment = establishmentService.deleteEstablishmentById(id);
     }
 }
