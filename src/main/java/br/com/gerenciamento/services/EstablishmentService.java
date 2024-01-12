@@ -52,20 +52,30 @@ public class EstablishmentService {
             return repository.findEstablishmentById(id).orElse(null);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
         }
+        return null;
     }
 
     //Procurar estabelecimento por CNPJ.
     public Establishment findEstablishmentByDocument(String document) {
         try {
-            return repository.findEstablishmentByDocument(document).orElse(null);
+            Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
+
+            if (optionalEstablishment.isPresent()) {
+                Establishment establishment = optionalEstablishment.get();
+
+                System.out.println(establishment);
+
+                return establishment;
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
-        }
 
+        }
+        return null;
     }
+
+
 
 
     //Atualizar um estabelecimento.
@@ -97,7 +107,7 @@ public class EstablishmentService {
     //Deletar um estabelecimento por ID.
     public Establishment deleteEstablishmentById(Long id) {
         try {
-            if(repository.existsById(id)) {
+            if (repository.existsById(id)) {
                 this.repository.deleteById(id);
             }
         } catch (Exception e) {
