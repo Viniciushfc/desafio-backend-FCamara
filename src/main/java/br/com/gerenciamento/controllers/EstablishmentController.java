@@ -36,4 +36,8 @@ public class EstablishmentController {
         return new ResponseEntity<>(establishment, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteByIdEstablishment(@PathVariable Long id){
+        Establishment establishment = establishmentService.deleteEstablishmentById(id);
+    }
 }
