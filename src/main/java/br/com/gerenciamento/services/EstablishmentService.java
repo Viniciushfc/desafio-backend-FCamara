@@ -49,7 +49,13 @@ public class EstablishmentService {
     //Procurar estabelecimento por ID.
     public Establishment findEstablishmentById(Long id) {
         try {
-            return repository.findEstablishmentById(id).orElse(null);
+            Optional<Establishment> optionalEstablishment = repository.findEstablishmentById(id);
+
+            if(optionalEstablishment.isPresent()){
+                Establishment establishment = optionalEstablishment.get();
+
+                return establishment;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -64,8 +70,6 @@ public class EstablishmentService {
             if (optionalEstablishment.isPresent()) {
                 Establishment establishment = optionalEstablishment.get();
 
-                System.out.println(establishment);
-
                 return establishment;
             }
         } catch (Exception e) {
@@ -74,9 +78,6 @@ public class EstablishmentService {
         }
         return null;
     }
-
-
-
 
     //Atualizar um estabelecimento.
     public Establishment updateEstablishment(EstablishmentDTO dto) {
