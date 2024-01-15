@@ -18,7 +18,7 @@ public class VehicleService {
     VehicleRepository repository;
 
     //Salvar no Banco de Dados.
-    public void saveEstablishment(Vehicle vehicle) {
+    public void saveVehicle(Vehicle vehicle) {
         try {
             this.repository.save(vehicle);
         } catch (Exception e) {
@@ -30,7 +30,7 @@ public class VehicleService {
     public Vehicle createVehicle(VehicleDTO dto) {
         try {
             Vehicle vehicleNew = new Vehicle(dto);
-            this.saveEstablishment(vehicleNew);
+            this.saveVehicle(vehicleNew);
             return vehicleNew;
         } catch (Exception e) {
             e.printStackTrace();
@@ -48,7 +48,7 @@ public class VehicleService {
         }
     }
 
-    //Procurar estabelecimento por ID.
+    //Procurar Veículos por ID.
     public Vehicle findVehicleById(Long id) {
         try {
             Optional<Vehicle> optionalVehicle = repository.findVehicleById(id);
@@ -64,4 +64,75 @@ public class VehicleService {
         return null;
     }
 
+    //Procurar Veículos por Placa.
+    public Vehicle findVehiclebyBrand(String brand) {
+        try {
+            Optional<Vehicle> optionalVehicle = repository.findVehicleByBrand(brand);
+
+            if (optionalVehicle.isPresent()) {
+                    Vehicle vehicle = optionalVehicle.get();
+
+                return vehicle;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return null;
+    }
+
+    //Atualizar um Veículos.
+    public Vehicle updateVehicle(VehicleDTO dto) {
+        try {
+            Optional<Vehicle> optionalVehicle = repository.findVehicleByBrand(dto.brand());
+
+            if (optionalVehicle.isPresent()) {
+                Vehicle vehicle = optionalVehicle.get();
+
+                vehicle.setBrand(dto.brand());
+                vehicle.setModel(dto.model());
+                vehicle.setColor(dto.color());
+                vehicle.setPlate(dto.plate());
+                vehicle.setTypeVehicle(dto.typeVehicle());
+
+                return repository.save(vehicle);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
+    //Deletar um Veículos por ID.
+    public Vehicle deleteVehicleId(Long id) {
+        try {
+            if (repository.existsById(id)) {
+                this.repository.deleteById(id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    //Deletar um Veículos por Brand.
+    public Vehicle deleteEstablishmentByDocument(String brand) {
+        try {
+            Optional<Vehicle> optionalVehicle = repository.findVehicleByBrand(brand);
+
+            if (optionalVehicle.isPresent()) {
+
+                Vehicle vehicle = optionalVehicle.get();
+
+                repository.delete(vehicle);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
