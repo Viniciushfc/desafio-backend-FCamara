@@ -52,4 +52,9 @@ public class EstablishmentController {
     public void deleteEstablishmentById(@PathVariable Long id) {
         Establishment establishment = establishmentService.deleteEstablishmentById(id);
     }
+
+    @DeleteMapping("/document/{document}")
+    public void deleteEstablishmentByDocument(@PathVariable String document){
+        Establishment establishment = establishmentService.deleteEstablishmentByDocument(document);
+    }
 }

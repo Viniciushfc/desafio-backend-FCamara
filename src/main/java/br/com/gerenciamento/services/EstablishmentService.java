@@ -62,7 +62,7 @@ public class EstablishmentService {
         return null;
     }
 
-    //Procurar estabelecimento por CNPJ.
+    //Procurar estabelecimento por Document.
     public Establishment findEstablishmentByDocument(String document) {
         try {
             Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
@@ -117,7 +117,8 @@ public class EstablishmentService {
         return null;
     }
 
-    public void deleteEstablishmentByDocument(String document) {
+    //Deletar um estbelecimento por Document.
+    public Establishment deleteEstablishmentByDocument(String document) {
         try {
             Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
 
@@ -131,6 +132,7 @@ public class EstablishmentService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
 }

@@ -8,8 +8,8 @@ import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 
-@Entity(name = "establishment")
-@Table(name = "establishment")
+@Entity(name = "establishments")
+@Table(name = "establishments")
 @Getter
 @Setter
 @AllArgsConstructor
