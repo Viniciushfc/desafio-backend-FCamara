@@ -43,7 +43,7 @@ public class EstablishmentController {
     }
 
     @PutMapping
-    public ResponseEntity<Establishment> updateEstablishments(@RequestBody EstablishmentDTO dto) {
+    public ResponseEntity<Establishment> updateEstablishment(@RequestBody EstablishmentDTO dto) {
         Establishment establishment = establishmentService.updateEstablishment(dto);
         return new ResponseEntity<>(establishment, HttpStatus.OK);
     }
