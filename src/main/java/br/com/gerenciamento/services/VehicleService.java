@@ -1,7 +1,6 @@
 package br.com.gerenciamento.services;
 
 
-import br.com.gerenciamento.core.domain.Establishment.Establishment;
 import br.com.gerenciamento.core.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
 import br.com.gerenciamento.repositories.VehicleRepository;
@@ -107,7 +106,7 @@ public class VehicleService {
     }
 
     //Deletar um Veículos por ID.
-    public Vehicle deleteVehicleId(Long id) {
+    public Vehicle deleteVehicleById(Long id) {
         try {
             if (repository.existsById(id)) {
                 this.repository.deleteById(id);
@@ -119,7 +118,7 @@ public class VehicleService {
     }
 
     //Deletar um Veículos por Brand.
-    public Vehicle deleteEstablishmentByDocument(String brand) {
+    public Vehicle deleteVehicleByBrand(String brand) {
         try {
             Optional<Vehicle> optionalVehicle = repository.findVehicleByBrand(brand);
 
