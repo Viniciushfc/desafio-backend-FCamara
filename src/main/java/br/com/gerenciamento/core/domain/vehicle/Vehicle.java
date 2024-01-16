@@ -30,12 +30,12 @@ public class Vehicle {
     @NotNull
     private TypeVehicle typeVehicle;
 
-    public Vehicle (VehicleDTO dto){
+    public Vehicle(VehicleDTO dto){
         this.brand = dto.brand();
         this.model = dto.model();
         this.color = dto.color();
         this.plate = dto.plate();
         this.typeVehicle = dto.typeVehicle();
-    }
+    };
 }
 

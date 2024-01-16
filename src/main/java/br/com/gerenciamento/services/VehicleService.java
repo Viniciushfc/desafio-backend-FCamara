@@ -1,6 +1,7 @@
 package br.com.gerenciamento.services;
 
 
+
 import br.com.gerenciamento.core.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
 import br.com.gerenciamento.repositories.VehicleRepository;
@@ -14,7 +15,7 @@ import java.util.Optional;
 public class VehicleService {
 
     @Autowired
-    VehicleRepository repository;
+    private VehicleRepository repository;
 
     //Salvar no Banco de Dados.
     public void saveVehicle(Vehicle vehicle) {
