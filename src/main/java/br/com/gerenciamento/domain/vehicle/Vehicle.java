@@ -1,4 +1,4 @@
-package br.com.gerenciamento.core.domain.vehicle;
+package br.com.gerenciamento.domain.vehicle;
 
 
 import br.com.gerenciamento.dtos.VehicleDTO;

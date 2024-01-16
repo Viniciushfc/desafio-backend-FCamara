@@ -1,6 +1,6 @@
 package br.com.gerenciamento.repositories;
 
-import br.com.gerenciamento.core.domain.Establishment.Establishment;
+import br.com.gerenciamento.domain.Establishment.Establishment;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

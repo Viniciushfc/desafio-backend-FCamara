@@ -2,7 +2,7 @@ package br.com.gerenciamento.services;
 
 
 
-import br.com.gerenciamento.core.domain.vehicle.Vehicle;
+import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
 import br.com.gerenciamento.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,9 +65,9 @@ public class VehicleService {
     }
 
     //Procurar Veículos por Placa.
-    public Vehicle findVehiclebyBrand(String brand) {
+    public Vehicle findVehicleByPlate(String plate) {
         try {
-            Optional<Vehicle> optionalVehicle = repository.findVehicleByBrand(brand);
+            Optional<Vehicle> optionalVehicle = repository.findVehicleByPlate(plate);
 
             if (optionalVehicle.isPresent()) {
                     Vehicle vehicle = optionalVehicle.get();
@@ -84,7 +84,7 @@ public class VehicleService {
     //Atualizar um Veículos.
     public Vehicle updateVehicle(VehicleDTO dto) {
         try {
-            Optional<Vehicle> optionalVehicle = repository.findVehicleByBrand(dto.brand());
+            Optional<Vehicle> optionalVehicle = repository.findVehicleByPlate(dto.plate());
 
             if (optionalVehicle.isPresent()) {
                 Vehicle vehicle = optionalVehicle.get();
@@ -119,9 +119,9 @@ public class VehicleService {
     }
 
     //Deletar um Veículos por Brand.
-    public Vehicle deleteVehicleByBrand(String brand) {
+    public Vehicle deleteVehicleByPlate(String plate) {
         try {
-            Optional<Vehicle> optionalVehicle = repository.findVehicleByBrand(brand);
+            Optional<Vehicle> optionalVehicle = repository.findVehicleByPlate(plate);
 
             if (optionalVehicle.isPresent()) {
 

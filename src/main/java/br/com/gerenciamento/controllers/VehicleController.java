@@ -1,6 +1,6 @@
 package br.com.gerenciamento.controllers;
 
-import br.com.gerenciamento.core.domain.vehicle.Vehicle;
+import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
 import br.com.gerenciamento.services.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,9 @@ public class VehicleController {
         return new ResponseEntity<>(vehicle, HttpStatus.OK);
     }
 
-    @GetMapping("brand/{brand}")
-    public ResponseEntity<Vehicle> getVehicleByBrand(@PathVariable String brand){
-        Vehicle vehicle = vehicleService.findVehiclebyBrand(brand);
+    @GetMapping("plate/{plate}")
+    public ResponseEntity<Vehicle> getVehicleByBrand(@PathVariable String plate){
+        Vehicle vehicle = vehicleService.findVehicleByPlate(plate);
         return new ResponseEntity<>(vehicle, HttpStatus.OK);
     }
 
@@ -52,8 +52,8 @@ public class VehicleController {
         Vehicle vehicle = vehicleService.deleteVehicleById(id);
     }
 
-    @DeleteMapping("/brand/{brand}")
-    public void deleteVehicleByBrand(@PathVariable String brand){
-        Vehicle vehicle = vehicleService.deleteVehicleByBrand(brand);
+    @DeleteMapping("/plate/{plate}")
+    public void deleteVehicleByPlate(@PathVariable String plate){
+        Vehicle vehicle = vehicleService.deleteVehicleByPlate(plate);
     }
 }

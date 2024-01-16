@@ -1,7 +1,7 @@
 package br.com.gerenciamento.controllers;
 
 
-import br.com.gerenciamento.core.domain.Establishment.Establishment;
+import br.com.gerenciamento.domain.Establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
 import br.com.gerenciamento.services.EstablishmentService;
 import org.springframework.beans.factory.annotation.Autowired;
