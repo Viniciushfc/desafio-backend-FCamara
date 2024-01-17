@@ -29,9 +29,9 @@ public class Establishment {
     @NotNull
     private String telephone;
     @NotNull
-    private String amountVacanciesBike;
+    private Long amountVacanciesBike;
     @NotNull
-    private String amountVacanciesCar;
+    private Long amountVacanciesCar;
 
 
     public Establishment(EstablishmentDTO dto){

@@ -39,7 +39,7 @@ public class EstablishmentService {
     //Listar todos os estabelecimento.
     public List<Establishment> getAllEstablishment() {
         try {
-            return repository.findAll();
+            return this.repository.findAll();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
