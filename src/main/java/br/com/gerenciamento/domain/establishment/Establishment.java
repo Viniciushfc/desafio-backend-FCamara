@@ -1,8 +1,7 @@
-package br.com.gerenciamento.domain.Establishment;
+package br.com.gerenciamento.domain.establishment;
 
 
 import br.com.gerenciamento.dtos.EstablishmentDTO;
-import br.com.gerenciamento.dtos.VehicleDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;

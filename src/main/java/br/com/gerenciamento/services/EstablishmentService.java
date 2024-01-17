@@ -1,6 +1,6 @@
 package br.com.gerenciamento.services;
 
-import br.com.gerenciamento.domain.Establishment.Establishment;
+import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
 import br.com.gerenciamento.repositories.EstablishmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
