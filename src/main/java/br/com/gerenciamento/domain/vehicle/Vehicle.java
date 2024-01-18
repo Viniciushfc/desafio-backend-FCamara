@@ -37,5 +37,7 @@ public class Vehicle {
         this.plate = dto.plate();
         this.typeVehicle = dto.typeVehicle();
     };
+
+
 }
 
