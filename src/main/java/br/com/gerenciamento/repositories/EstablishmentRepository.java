@@ -10,4 +10,5 @@ public interface EstablishmentRepository extends JpaRepository<Establishment, Lo
     Optional<Establishment> findEstablishmentById(Long id);
 
     Optional<Establishment> findEstablishmentByDocument(String document);
+
 }
