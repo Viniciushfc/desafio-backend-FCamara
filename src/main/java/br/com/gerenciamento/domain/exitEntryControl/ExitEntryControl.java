@@ -25,19 +25,12 @@ public class ExitEntryControl {
     private LocalDateTime entry;
     @Column(nullable = true)
     private LocalDateTime exit;
+    @Column(nullable = true)
+    private Double price;
     @NotNull
     @ManyToOne
     private Establishment establishment;
     @NotNull
     @ManyToOne
     private Vehicle vehicle;
-    @NotNull
-    private String plate;
-    @NotNull
-    private String document;
-
-    public ExitEntryControl(ExitEntryControlDTO dto) {
-        this.plate = dto.plate();
-        this.document = dto.document();
-    }
 }
