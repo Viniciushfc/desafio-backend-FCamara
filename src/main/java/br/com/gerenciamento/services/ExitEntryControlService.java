@@ -2,18 +2,15 @@ package br.com.gerenciamento.services;
 
 import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.domain.exitEntryControl.ExitEntryControl;
-import br.com.gerenciamento.domain.vehicle.TypeVehicle;
 import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.ExitEntryControlDTO;
+import br.com.gerenciamento.infra.exceptionCustom.NoDataFoundException;
 import br.com.gerenciamento.repositories.EstablishmentRepository;
 import br.com.gerenciamento.repositories.ExitEntryControlRepository;
-
 import br.com.gerenciamento.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -53,8 +50,9 @@ public class ExitEntryControlService {
             this.saveExitEntryControl(exitEntryControl);
 
             return exitEntryControl;
+        } else {
+            throw new NoDataFoundException();
         }
-        return null;
     }
 
     //Listar todos os cadastros de entrada/saída.
@@ -63,70 +61,63 @@ public class ExitEntryControlService {
     }
 
     //Listar Controles de entrada/saída por I1.
-    public ExitEntryControl getExitEntryControlById(Long id) {
-            Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
-
-            if (exitEntryControlOptional.isPresent()) {
-                ExitEntryControl exitEntryControl = exitEntryControlOptional.get();
-
-                return exitEntryControl;
-            }
-        return null;
+    public ExitEntryControl getExitEntryControlById(Long id) throws Exception {
+        return this.exitEntryControlRepository.findExitEntryControlById(id).orElseThrow(() -> new Exception("Usuario não encontrado!"));
     }
 
     //Atualizar cadastros de entrada/saída
     public ExitEntryControl updateExitEntryControl(Long id, ExitEntryControlDTO dto) {
-            Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
-            Optional<Vehicle> vehicleOptional = vehicleRepository.findVehicleByPlate(dto.plate());
-            Optional<Establishment> establishmentOptional = establishmentRepository.findEstablishmentByDocument(dto.document());
+        Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
+        Optional<Vehicle> vehicleOptional = vehicleRepository.findVehicleByPlate(dto.plate());
+        Optional<Establishment> establishmentOptional = establishmentRepository.findEstablishmentByDocument(dto.document());
 
-            if (vehicleOptional.isPresent() && establishmentOptional.isPresent() && exitEntryControlOptional.isPresent()) {
+        if (vehicleOptional.isPresent() && establishmentOptional.isPresent() && exitEntryControlOptional.isPresent()) {
 
-                ExitEntryControl exitEntryControl = exitEntryControlOptional.get();
+            ExitEntryControl exitEntryControl = exitEntryControlOptional.get();
 
-                exitEntryControl.setVehicle(vehicleOptional.get());
-                exitEntryControl.setEstablishment(establishmentOptional.get());
+            exitEntryControl.setVehicle(vehicleOptional.get());
+            exitEntryControl.setEstablishment(establishmentOptional.get());
 
-                verificaVagas(exitEntryControl);
+            verificaVagas(exitEntryControl);
 
-                saveExitEntryControl(exitEntryControl);
+            saveExitEntryControl(exitEntryControl);
 
-                return exitEntryControl;
-            }
+            return exitEntryControl;
+        }
         return null;
     }
 
     //Atualizar o controle de saída/entrada e realizar os cálculos dos valores a serem cobrados.
     public ExitEntryControl updateExitControl(Long id) {
-            Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
+        Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
 
-            if (exitEntryControlOptional.isPresent()) {
+        if (exitEntryControlOptional.isPresent()) {
 
-                ExitEntryControl exitEntryControl = exitEntryControlOptional.get();
+            ExitEntryControl exitEntryControl = exitEntryControlOptional.get();
 
-                exitEntryControl.setExit(LocalDateTime.now());
-                exitEntryControl.setPrice(priceExitControl(exitEntryControl));
+            exitEntryControl.setExit(LocalDateTime.now());
+            exitEntryControl.setPrice(priceExitControl(exitEntryControl));
 
-                saveExitEntryControl(exitEntryControl);
+            saveExitEntryControl(exitEntryControl);
 
-                return exitEntryControl;
-            }
+            return exitEntryControl;
+        }
         return null;
     }
 
     //Deletar um controle de entrada/saída por Id.
     public ExitEntryControl deleteExitEntryControlById(Long id) {
-            if (exitEntryControlRepository.existsById(id)) {
-                this.exitEntryControlRepository.deleteById(id);
-            }
+        if (exitEntryControlRepository.existsById(id)) {
+            this.exitEntryControlRepository.deleteById(id);
+        }
         return null;
     }
 
     //Deletar um controle de entrada/saída por Horario de entrada. (não implementado)
     public ExitEntryControl deleteExitEntryControlByEntry(LocalDateTime entry) {
-            Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControByEntry(entry);
+        Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControByEntry(entry);
 
-            exitEntryControlOptional.ifPresent(exitEntryControl -> this.exitEntryControlRepository.delete(exitEntryControl));
+        exitEntryControlOptional.ifPresent(exitEntryControl -> this.exitEntryControlRepository.delete(exitEntryControl));
         return null;
     }
 
