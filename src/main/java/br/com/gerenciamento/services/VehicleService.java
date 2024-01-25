@@ -34,17 +34,8 @@ public class VehicleService {
     }
 
     //Procurar Veículos por ID.
-    public Vehicle findVehicleById(Long id) {
-
-        Optional<Vehicle> optionalVehicle = repository.findVehicleById(id);
-
-        if (optionalVehicle.isPresent()) {
-            Vehicle vehicle = optionalVehicle.get();
-
-            return vehicle;
-        }
-
-        return null;
+    public Vehicle findVehicleById(Long id) throws Exception {
+        return this.repository.findById(id).orElseThrow(() -> new Exception("Usuario não encontrado!"));
     }
 
     //Procurar Veículos por Placa.

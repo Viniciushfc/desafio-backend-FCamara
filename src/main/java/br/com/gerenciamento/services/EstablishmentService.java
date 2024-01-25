@@ -33,15 +33,8 @@ public class EstablishmentService {
     }
 
     //Procurar estabelecimento por ID.
-    public Establishment findEstablishmentById(Long id) {
-        Optional<Establishment> optionalEstablishment = repository.findEstablishmentById(id);
-
-        if (optionalEstablishment.isPresent()) {
-            Establishment establishment = optionalEstablishment.get();
-
-            return establishment;
-        }
-        return null;
+    public Establishment findEstablishmentById(Long id) throws Exception {
+        return this.repository.findById(id).orElseThrow(() -> new Exception("Usuario não encontrado!"));
     }
 
     //Procurar estabelecimento por Document.
