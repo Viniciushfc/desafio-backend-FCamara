@@ -5,6 +5,7 @@ import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
 import br.com.gerenciamento.services.EstablishmentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +20,9 @@ public class EstablishmentController {
     private EstablishmentService establishmentService;
 
     @PostMapping
-    public ResponseEntity<Establishment> createUser(@RequestBody EstablishmentDTO dto) {
-        Establishment newEstablishment = establishmentService.createEstablishment(dto);
-        return new ResponseEntity<>(newEstablishment, HttpStatus.CREATED);
+    public ResponseEntity<Establishment> createUser(@RequestBody EstablishmentDTO dto) throws Exception {
+            Establishment newEstablishment = establishmentService.createEstablishment(dto);
+            return new ResponseEntity<>(newEstablishment, HttpStatus.CREATED);
     }
 
     @GetMapping
@@ -31,7 +32,7 @@ public class EstablishmentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Establishment> getEstablishmentById(@PathVariable Long id){
+    public ResponseEntity<Establishment> getEstablishmentById(@PathVariable Long id) {
         Establishment establishment = this.establishmentService.findEstablishmentById(id);
         return new ResponseEntity<>(establishment, HttpStatus.OK);
     }
@@ -54,7 +55,7 @@ public class EstablishmentController {
     }
 
     @DeleteMapping("/document/{document}")
-    public void deleteEstablishmentByDocument(@PathVariable String document){
+    public void deleteEstablishmentByDocument(@PathVariable String document) {
         Establishment establishment = establishmentService.deleteEstablishmentByDocument(document);
     }
 }

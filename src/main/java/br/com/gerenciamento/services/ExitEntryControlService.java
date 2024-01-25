@@ -33,53 +33,37 @@ public class ExitEntryControlService {
 
     //Salvar no banco de dados.
     public void saveExitEntryControl(ExitEntryControl exitEntryControl) {
-        try {
-            this.exitEntryControlRepository.save(exitEntryControl);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.exitEntryControlRepository.save(exitEntryControl);
     }
 
     //Criar um Controle de entrada/saída.
     public ExitEntryControl createExitEntryControl(ExitEntryControlDTO dto) {
-        try {
-             Optional<Vehicle> vehicleOptional = vehicleRepository.findVehicleByPlate(dto.plate());
-             Optional<Establishment> establishmentOptional = establishmentRepository.findEstablishmentByDocument(dto.document());
+        Optional<Vehicle> vehicleOptional = vehicleRepository.findVehicleByPlate(dto.plate());
+        Optional<Establishment> establishmentOptional = establishmentRepository.findEstablishmentByDocument(dto.document());
 
-            if (vehicleOptional.isPresent() && establishmentOptional.isPresent()) {
-                ExitEntryControl exitEntryControl = new ExitEntryControl();
+        if (vehicleOptional.isPresent() && establishmentOptional.isPresent()) {
+            ExitEntryControl exitEntryControl = new ExitEntryControl();
 
-                exitEntryControl.setEntry(LocalDateTime.now());
-                exitEntryControl.setVehicle(vehicleOptional.get());
-                exitEntryControl.setEstablishment(establishmentOptional.get());
+            exitEntryControl.setEntry(LocalDateTime.now());
+            exitEntryControl.setVehicle(vehicleOptional.get());
+            exitEntryControl.setEstablishment(establishmentOptional.get());
 
-                verificaVagas(exitEntryControl);
+            verificaVagas(exitEntryControl);
 
-                this.saveExitEntryControl(exitEntryControl);
+            this.saveExitEntryControl(exitEntryControl);
 
-                return exitEntryControl;
-            }
-        } catch (
-                Exception e) {
-            e.printStackTrace();
-
+            return exitEntryControl;
         }
         return null;
     }
 
     //Listar todos os cadastros de entrada/saída.
     public List<ExitEntryControl> getAllExitEntryControl() {
-        try {
-            return this.exitEntryControlRepository.findAll();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return this.exitEntryControlRepository.findAll();
     }
 
     //Listar Controles de entrada/saída por I1.
     public ExitEntryControl getExitEntryControlById(Long id) {
-        try {
             Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
 
             if (exitEntryControlOptional.isPresent()) {
@@ -87,15 +71,11 @@ public class ExitEntryControlService {
 
                 return exitEntryControl;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return null;
     }
 
     //Atualizar cadastros de entrada/saída
     public ExitEntryControl updateExitEntryControl(Long id, ExitEntryControlDTO dto) {
-        try {
             Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
             Optional<Vehicle> vehicleOptional = vehicleRepository.findVehicleByPlate(dto.plate());
             Optional<Establishment> establishmentOptional = establishmentRepository.findEstablishmentByDocument(dto.document());
@@ -113,15 +93,11 @@ public class ExitEntryControlService {
 
                 return exitEntryControl;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return null;
     }
 
     //Atualizar o controle de saída/entrada e realizar os cálculos dos valores a serem cobrados.
     public ExitEntryControl updateExitControl(Long id) {
-        try {
             Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
 
             if (exitEntryControlOptional.isPresent()) {
@@ -135,33 +111,22 @@ public class ExitEntryControlService {
 
                 return exitEntryControl;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return null;
     }
 
     //Deletar um controle de entrada/saída por Id.
     public ExitEntryControl deleteExitEntryControlById(Long id) {
-        try {
             if (exitEntryControlRepository.existsById(id)) {
                 this.exitEntryControlRepository.deleteById(id);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return null;
     }
 
     //Deletar um controle de entrada/saída por Horario de entrada. (não implementado)
     public ExitEntryControl deleteExitEntryControlByEntry(LocalDateTime entry) {
-        try {
             Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControByEntry(entry);
 
             exitEntryControlOptional.ifPresent(exitEntryControl -> this.exitEntryControlRepository.delete(exitEntryControl));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return null;
     }
 

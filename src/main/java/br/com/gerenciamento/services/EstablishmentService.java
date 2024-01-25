@@ -17,109 +17,75 @@ public class EstablishmentService {
 
     //Salvar no Banco de Dados.
     public void saveEstablishment(Establishment establishment) {
-        try {
-            this.repository.save(establishment);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.repository.save(establishment);
     }
 
     //Criar um estabelecimento.
     public Establishment createEstablishment(EstablishmentDTO dto) {
-        try {
-            Establishment establishmentNew = new Establishment(dto);
-            this.saveEstablishment(establishmentNew);
-            return establishmentNew;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        Establishment establishmentNew = new Establishment(dto);
+        this.saveEstablishment(establishmentNew);
+        return establishmentNew;
     }
 
     //Listar todos os estabelecimento.
     public List<Establishment> getAllEstablishment() {
-        try {
-            return this.repository.findAll();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+        return this.repository.findAll();
     }
 
     //Procurar estabelecimento por ID.
     public Establishment findEstablishmentById(Long id) {
-        try {
-            Optional<Establishment> optionalEstablishment = repository.findEstablishmentById(id);
+        Optional<Establishment> optionalEstablishment = repository.findEstablishmentById(id);
 
-            if(optionalEstablishment.isPresent()){
-                Establishment establishment = optionalEstablishment.get();
+        if (optionalEstablishment.isPresent()) {
+            Establishment establishment = optionalEstablishment.get();
 
-                return establishment;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return establishment;
         }
         return null;
     }
 
     //Procurar estabelecimento por Document.
     public Establishment findEstablishmentByDocument(String document) {
-        try {
-            Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
+        Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
 
-            if (optionalEstablishment.isPresent()) {
-                Establishment establishment = optionalEstablishment.get();
+        if (optionalEstablishment.isPresent()) {
+            Establishment establishment = optionalEstablishment.get();
 
-                return establishment;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-
+            return establishment;
         }
         return null;
     }
 
     //Atualizar um estabelecimento.
     public Establishment updateEstablishment(EstablishmentDTO dto) {
-        try {
-            Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(dto.document());
+        Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(dto.document());
 
-            if (optionalEstablishment.isPresent()) {
-                Establishment establishment = optionalEstablishment.get();
+        if (optionalEstablishment.isPresent()) {
+            Establishment establishment = optionalEstablishment.get();
 
-                establishment.setName(dto.name());
-                establishment.setDocument(dto.document());
-                establishment.setAddress(dto.address());
-                establishment.setTelephone(dto.telephone());
-                establishment.setAmountVacanciesBike(dto.amountVacanciesBike());
-                establishment.setAmountVacanciesCar(dto.amountVacanciesCar());
+            establishment.setName(dto.name());
+            establishment.setDocument(dto.document());
+            establishment.setAddress(dto.address());
+            establishment.setTelephone(dto.telephone());
+            establishment.setAmountVacanciesBike(dto.amountVacanciesBike());
+            establishment.setAmountVacanciesCar(dto.amountVacanciesCar());
 
-                return repository.save(establishment);
-            } else {
-                return null;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+            return repository.save(establishment);
         }
+        return null;
 
     }
 
     //Deletar um estabelecimento por ID.
     public Establishment deleteEstablishmentById(Long id) {
-        try {
             if (repository.existsById(id)) {
                 this.repository.deleteById(id);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return null;
     }
 
     //Deletar um estbelecimento por Document.
     public Establishment deleteEstablishmentByDocument(String document) {
-        try {
             Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
 
             if (optionalEstablishment.isPresent()) {
@@ -129,9 +95,6 @@ public class EstablishmentService {
                 repository.delete(establishment);
 
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return null;
     }
 
