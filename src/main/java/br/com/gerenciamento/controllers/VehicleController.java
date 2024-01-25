@@ -30,7 +30,7 @@ public class VehicleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Vehicle> getVehicleById(@PathVariable Long id){
+    public ResponseEntity<Vehicle> getVehicleById(@PathVariable Long id) throws Exception {
         Vehicle vehicle = this.vehicleService.findVehicleById(id);
         return new ResponseEntity<>(vehicle, HttpStatus.OK);
     }

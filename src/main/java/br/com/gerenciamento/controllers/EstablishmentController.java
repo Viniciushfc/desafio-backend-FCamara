@@ -5,7 +5,6 @@ import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
 import br.com.gerenciamento.services.EstablishmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +31,7 @@ public class EstablishmentController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Establishment> getEstablishmentById(@PathVariable Long id) {
+    public ResponseEntity<Establishment> getEstablishmentById(@PathVariable Long id) throws Exception {
         Establishment establishment = this.establishmentService.findEstablishmentById(id);
         return new ResponseEntity<>(establishment, HttpStatus.OK);
     }
