@@ -30,7 +30,7 @@ public class ExitEntryControlController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ExitEntryControl> getExitEntryControlById(@PathVariable Long id){
+    public ResponseEntity<ExitEntryControl> getExitEntryControlById(@PathVariable Long id) throws Exception {
         ExitEntryControl exitEntryControl = exitEntryControlService.getExitEntryControlById(id);
         return new ResponseEntity<>(exitEntryControl, HttpStatus.OK);
     }
