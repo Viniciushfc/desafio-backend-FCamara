@@ -2,10 +2,9 @@ package br.com.gerenciamento.domain.exitEntryControl;
 
 import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.domain.vehicle.Vehicle;
-import br.com.gerenciamento.dtos.ExitEntryControlDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.antlr.v4.runtime.misc.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -21,16 +20,16 @@ public class ExitEntryControl {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
     private LocalDateTime entry;
     @Column(nullable = true)
     private LocalDateTime exit;
     @Column(nullable = true)
+    @NotBlank(message = "Price is mandatory")
     private Double price;
-    @NotNull
     @ManyToOne
+    @NotBlank(message = "Establishment is mandatory")
     private Establishment establishment;
-    @NotNull
     @ManyToOne
+    @NotBlank(message = "Vehicle is mandatory")
     private Vehicle vehicle;
 }

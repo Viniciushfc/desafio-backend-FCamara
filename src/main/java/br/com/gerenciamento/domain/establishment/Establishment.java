@@ -3,8 +3,8 @@ package br.com.gerenciamento.domain.establishment;
 
 import br.com.gerenciamento.dtos.EstablishmentDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
-import org.antlr.v4.runtime.misc.NotNull;
 
 
 @Entity(name = "establishments")
@@ -19,18 +19,18 @@ public class Establishment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotBlank(message = "Name is mandatory")
     private String name;
-    @NotNull
+    @NotBlank(message = "Document is mandatory")
     @Column(unique = true)
     private String document;
-    @NotNull
+    @NotBlank(message = "Address is mandatory")
     private String address;
-    @NotNull
+    @NotBlank(message = "Telephone is mandatory")
     private String telephone;
-    @NotNull
+    @NotBlank(message = "Vacancies Bike is mandatory")
     private Long amountVacanciesBike;
-    @NotNull
+    @NotBlank(message = "Vacancies Car is mandatory")
     private Long amountVacanciesCar;
 
 

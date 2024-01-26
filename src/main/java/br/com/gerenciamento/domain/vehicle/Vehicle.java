@@ -3,8 +3,9 @@ package br.com.gerenciamento.domain.vehicle;
 
 import br.com.gerenciamento.dtos.VehicleDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity(name = "vehicles")
 @Table(name = "vehicles")
@@ -18,16 +19,16 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
+    @NotBlank(message = "brand is mandatory")
     private String brand;
-    @NotNull
+    @NotBlank(message = "model is mandatory")
     private String model;
-    @NotNull
+    @NotBlank(message = "color is mandatory")
     private String color;
-    @NotNull
+    @NotBlank(message = "plate is mandatory")
     @Column(unique = true)
     private String plate;
-    @NotNull
+    @NotNull(message = "Type Vehicle is mandatory")
     private TypeVehicle typeVehicle;
 
     public Vehicle(VehicleDTO dto){
