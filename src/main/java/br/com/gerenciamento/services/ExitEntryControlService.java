@@ -4,7 +4,7 @@ import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.domain.exitEntryControl.ExitEntryControl;
 import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.ExitEntryControlDTO;
-import br.com.gerenciamento.infra.util.exceptionCustom.NoDataFoundException;
+import br.com.gerenciamento.infra.exceptionCustom.NoDataFoundException;
 import br.com.gerenciamento.infra.repositories.EstablishmentRepository;
 import br.com.gerenciamento.infra.repositories.ExitEntryControlRepository;
 import br.com.gerenciamento.infra.repositories.VehicleRepository;
