@@ -4,6 +4,7 @@ import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.domain.exitEntryControl.ExitEntryControl;
 import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.ExitEntryControlDTO;
+import br.com.gerenciamento.infra.exception.MissingInformationException;
 import br.com.gerenciamento.infra.exception.NoDataFoundException;
 import br.com.gerenciamento.infra.repositories.EstablishmentRepository;
 import br.com.gerenciamento.infra.repositories.ExitEntryControlRepository;
@@ -84,8 +85,13 @@ public class ExitEntryControlService {
 
             return exitEntryControl;
         }
-        return null;
+        if (!exitEntryControlOptional.isPresent()) {
+            throw new NoDataFoundException("Controle de saída/entrada não encontrado para o ID fornecido.");
+        }
+
+        throw new MissingInformationException("Impossível completar a operação devido à falta de informações necessárias. Por favor, verifique se todos os campos obrigatórios estão preenchidos corretamente.");
     }
+
 
     //Atualizar o controle de saída/entrada e realizar os cálculos dos valores a serem cobrados.
     public ExitEntryControl updateExitControl(Long id) {

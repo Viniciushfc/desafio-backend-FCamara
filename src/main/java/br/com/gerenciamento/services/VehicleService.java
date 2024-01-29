@@ -3,6 +3,7 @@ package br.com.gerenciamento.services;
 
 import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
+import br.com.gerenciamento.infra.exception.MissingInformationException;
 import br.com.gerenciamento.infra.exception.NoDataFoundException;
 import br.com.gerenciamento.infra.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,21 +42,11 @@ public class VehicleService {
 
     //Procurar Veículos por Placa.
     public Vehicle findVehicleByPlate(String plate) {
-
-        Optional<Vehicle> optionalVehicle = repository.findVehicleByPlate(plate);
-
-        if (optionalVehicle.isPresent()) {
-            Vehicle vehicle = optionalVehicle.get();
-
-            return vehicle;
-        }
-
-        return null;
+        return this.repository.findVehicleByPlate(plate).orElseThrow(() -> new NoDataFoundException("Usuario não encontrado!"));
     }
 
     //Atualizar um Veículos.
     public Vehicle updateVehicle(VehicleDTO dto) {
-
         Optional<Vehicle> optionalVehicle = repository.findVehicleByPlate(dto.plate());
 
         if (optionalVehicle.isPresent()) {
@@ -69,19 +60,15 @@ public class VehicleService {
 
             return repository.save(vehicle);
         }
-        return null;
-
-
+        throw new MissingInformationException("Impossível completar a operação devido à falta de informações necessárias. Por favor, verifique se todos os campos obrigatórios estão preenchidos corretamente.");
     }
 
     //Deletar um Veículos por ID.
     public Vehicle deleteVehicleById(Long id) {
-
         if (repository.existsById(id)) {
             this.repository.deleteById(id);
         }
-
-        return null;
+        throw new NoDataFoundException("Usuario não encontrado!");
     }
 
     //Deletar um Veículos por Brand.
@@ -96,7 +83,6 @@ public class VehicleService {
             repository.delete(vehicle);
 
         }
-
-        return null;
+        throw new NoDataFoundException("Usuario não encontrado!");
     }
 }

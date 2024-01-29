@@ -41,14 +41,7 @@ public class EstablishmentService {
 
     //Procurar estabelecimento por Document.
     public Establishment findEstablishmentByDocument(String document) {
-        Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
-
-        if (optionalEstablishment.isPresent()) {
-            Establishment establishment = optionalEstablishment.get();
-
-            return establishment;
-        }
-        throw new NoDataFoundException("Usuario não encontrado!");
+        return this.repository.findEstablishmentByDocument(document).orElseThrow(() -> new NoDataFoundException("Usuario não encontrado!"));
     }
 
     //Atualizar um estabelecimento.
