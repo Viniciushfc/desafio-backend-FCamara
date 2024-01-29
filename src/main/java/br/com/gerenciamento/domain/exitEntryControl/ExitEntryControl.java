@@ -24,7 +24,6 @@ public class ExitEntryControl {
     @Column(nullable = true)
     private LocalDateTime exit;
     @Column(nullable = true)
-    @NotNull(message = "Price is mandatory")
     private Double price;
     @ManyToOne
     @NotNull(message = "Establishment is mandatory")
