@@ -1,4 +1,4 @@
-package br.com.gerenciamento.infra.exceptionCustom;
+package br.com.gerenciamento.infra.util.exceptionCustom;
 
 public class NoDataFoundException extends RuntimeException{
     public NoDataFoundException() {

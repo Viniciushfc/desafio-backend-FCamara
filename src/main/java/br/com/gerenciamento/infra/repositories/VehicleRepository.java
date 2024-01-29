@@ -1,4 +1,4 @@
-package br.com.gerenciamento.repositories;
+package br.com.gerenciamento.infra.repositories;
 
 
 import br.com.gerenciamento.domain.vehicle.Vehicle;

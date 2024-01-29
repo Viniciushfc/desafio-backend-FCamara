@@ -1,7 +1,7 @@
 package br.com.gerenciamento.infra;
 
 import br.com.gerenciamento.dtos.ExceptionDTO;
-import br.com.gerenciamento.infra.exceptionCustom.NoDataFoundException;
+import br.com.gerenciamento.infra.util.exceptionCustom.NoDataFoundException;
 import jakarta.validation.UnexpectedTypeException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;

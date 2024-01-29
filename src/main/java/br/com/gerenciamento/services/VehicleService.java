@@ -3,7 +3,7 @@ package br.com.gerenciamento.services;
 
 import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
-import br.com.gerenciamento.repositories.VehicleRepository;
+import br.com.gerenciamento.infra.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
