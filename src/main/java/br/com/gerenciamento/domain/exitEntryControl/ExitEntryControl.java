@@ -3,7 +3,7 @@ package br.com.gerenciamento.domain.exitEntryControl;
 import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.domain.vehicle.Vehicle;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -24,12 +24,12 @@ public class ExitEntryControl {
     @Column(nullable = true)
     private LocalDateTime exit;
     @Column(nullable = true)
-    @NotBlank(message = "Price is mandatory")
+    @NotNull(message = "Price is mandatory")
     private Double price;
     @ManyToOne
-    @NotBlank(message = "Establishment is mandatory")
+    @NotNull(message = "Establishment is mandatory")
     private Establishment establishment;
     @ManyToOne
-    @NotBlank(message = "Vehicle is mandatory")
+    @NotNull(message = "Vehicle is mandatory")
     private Vehicle vehicle;
 }

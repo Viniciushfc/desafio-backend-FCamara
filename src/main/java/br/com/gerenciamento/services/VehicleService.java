@@ -3,6 +3,7 @@ package br.com.gerenciamento.services;
 
 import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
+import br.com.gerenciamento.infra.exception.NoDataFoundException;
 import br.com.gerenciamento.infra.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class VehicleService {
 
     //Procurar Veículos por ID.
     public Vehicle findVehicleById(Long id) throws Exception {
-        return this.repository.findById(id).orElseThrow(() -> new Exception("Usuario não encontrado!"));
+        return this.repository.findById(id).orElseThrow(() -> new NoDataFoundException("Usuario não encontrado!"));
     }
 
     //Procurar Veículos por Placa.

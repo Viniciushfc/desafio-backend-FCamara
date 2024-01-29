@@ -4,7 +4,7 @@ import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.domain.exitEntryControl.ExitEntryControl;
 import br.com.gerenciamento.domain.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.ExitEntryControlDTO;
-import br.com.gerenciamento.infra.exceptionCustom.NoDataFoundException;
+import br.com.gerenciamento.infra.exception.NoDataFoundException;
 import br.com.gerenciamento.infra.repositories.EstablishmentRepository;
 import br.com.gerenciamento.infra.repositories.ExitEntryControlRepository;
 import br.com.gerenciamento.infra.repositories.VehicleRepository;
@@ -51,7 +51,7 @@ public class ExitEntryControlService {
 
             return exitEntryControl;
         } else {
-            throw new NoDataFoundException();
+            throw new NoDataFoundException("Impossível completar a criação de controle. Verifique se há um veículo ou um estabelecimento salvo com essas informações.");
         }
     }
 
@@ -62,7 +62,7 @@ public class ExitEntryControlService {
 
     //Listar Controles de entrada/saída por I1.
     public ExitEntryControl getExitEntryControlById(Long id) throws Exception {
-        return this.exitEntryControlRepository.findExitEntryControlById(id).orElseThrow(() -> new Exception("Usuario não encontrado!"));
+        return this.exitEntryControlRepository.findExitEntryControlById(id).orElseThrow(() -> new NoDataFoundException("Usuario não encontrado!"));
     }
 
     //Atualizar cadastros de entrada/saída

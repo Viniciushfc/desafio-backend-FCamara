@@ -4,6 +4,7 @@ package br.com.gerenciamento.domain.establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 
@@ -28,9 +29,9 @@ public class Establishment {
     private String address;
     @NotBlank(message = "Telephone is mandatory")
     private String telephone;
-    @NotBlank(message = "Vacancies Bike is mandatory")
+    @NotNull(message = "Vacancies Bike is mandatory")
     private Long amountVacanciesBike;
-    @NotBlank(message = "Vacancies Car is mandatory")
+    @NotNull(message = "Vacancies Car is mandatory")
     private Long amountVacanciesCar;
 
 

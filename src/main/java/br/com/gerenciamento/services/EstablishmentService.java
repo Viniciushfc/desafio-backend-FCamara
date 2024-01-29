@@ -2,6 +2,8 @@ package br.com.gerenciamento.services;
 
 import br.com.gerenciamento.domain.establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
+import br.com.gerenciamento.infra.exception.MissingInformationException;
+import br.com.gerenciamento.infra.exception.NoDataFoundException;
 import br.com.gerenciamento.infra.repositories.EstablishmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +36,7 @@ public class EstablishmentService {
 
     //Procurar estabelecimento por ID.
     public Establishment findEstablishmentById(Long id) throws Exception {
-        return this.repository.findById(id).orElseThrow(() -> new Exception("Usuario não encontrado!"));
+        return this.repository.findById(id).orElseThrow(() -> new NoDataFoundException("Usuario não encontrado!"));
     }
 
     //Procurar estabelecimento por Document.
@@ -46,7 +48,7 @@ public class EstablishmentService {
 
             return establishment;
         }
-        return null;
+        throw new NoDataFoundException("Usuario não encontrado!");
     }
 
     //Atualizar um estabelecimento.
@@ -65,30 +67,30 @@ public class EstablishmentService {
 
             return repository.save(establishment);
         }
-        return null;
+        throw new MissingInformationException("Impossível completar a operação devido à falta de informações necessárias. Por favor, verifique se todos os campos obrigatórios estão preenchidos corretamente.");
 
     }
 
     //Deletar um estabelecimento por ID.
     public Establishment deleteEstablishmentById(Long id) {
-            if (repository.existsById(id)) {
-                this.repository.deleteById(id);
-            }
-        return null;
+        if (repository.existsById(id)) {
+            this.repository.deleteById(id);
+        }
+        throw new NoDataFoundException("Usuario não encontrado!");
     }
 
     //Deletar um estbelecimento por Document.
     public Establishment deleteEstablishmentByDocument(String document) {
-            Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
+        Optional<Establishment> optionalEstablishment = repository.findEstablishmentByDocument(document);
 
-            if (optionalEstablishment.isPresent()) {
+        if (optionalEstablishment.isPresent()) {
 
-                Establishment establishment = optionalEstablishment.get();
+            Establishment establishment = optionalEstablishment.get();
 
-                repository.delete(establishment);
+            repository.delete(establishment);
 
-            }
-        return null;
+        }
+        throw new NoDataFoundException("Usuario não encontrado!");
     }
 
 }
