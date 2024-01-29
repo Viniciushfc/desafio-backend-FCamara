@@ -1,7 +1,7 @@
-package br.com.gerenciamento.infra;
+package br.com.gerenciamento.infra.exception;
 
 import br.com.gerenciamento.dtos.ExceptionDTO;
-import br.com.gerenciamento.infra.exceptionCustom.NoDataFoundException;
+import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.UnexpectedTypeException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
@@ -25,15 +25,15 @@ public class ControllerExceptionHandler {
         return  ResponseEntity.badRequest().body(exceptionDTO);
     }
 
-    @ExceptionHandler(UnexpectedTypeException.class)
-    public ResponseEntity handleUnexpectedTypeException(UnexpectedTypeException exception){
-        ExceptionDTO exceptionDTO = new ExceptionDTO("Erro inesperado ao validar os dados. Por favor, verifique se os dados fornecidos são do tipo esperado e tente novamente.", "400");
+    @ExceptionHandler({UnexpectedTypeException.class, ConstraintViolationException.class})
+    public ResponseEntity handleUnexpectedTypeAndConstraintViolationExceptionException(Exception exception){
+        ExceptionDTO exceptionDTO = new ExceptionDTO("Erro inesperado ao validar os dados. Por favor, verifique se os dados fornecidos são o esperado e tente novamente.", "400");
 
         return ResponseEntity.badRequest().body(exceptionDTO);
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity threatGeneralException(DataIntegrityViolationException exception){
+    public ResponseEntity generalException(DataIntegrityViolationException exception){
         ExceptionDTO exceptionDTO = new ExceptionDTO(exception.getMessage(), "500");
 
         return  ResponseEntity.internalServerError().body(exceptionDTO);
