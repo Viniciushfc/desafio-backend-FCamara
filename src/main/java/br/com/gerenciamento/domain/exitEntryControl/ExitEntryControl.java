@@ -31,4 +31,5 @@ public class ExitEntryControl {
     @ManyToOne
     @NotNull(message = "Vehicle is mandatory")
     private Vehicle vehicle;
+
 }

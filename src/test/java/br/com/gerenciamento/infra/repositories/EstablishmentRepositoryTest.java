@@ -25,7 +25,7 @@ class EstablishmentRepositoryTest {
     EntityManager entityManager;
 
     @Test
-    @DisplayName("Should get Establishment successfully from DB")
+    @DisplayName("Deve achar um estabelecimento por Documento")
     void findEstablishmentByDocumentCase1() {
         String document = "123456781";
         EstablishmentDTO dto = new EstablishmentDTO("Estabelecimento", document, "Ali mesmo", "(99)99999-9998", 10L, 10L);
@@ -36,7 +36,7 @@ class EstablishmentRepositoryTest {
     }
 
     @Test
-    @DisplayName("Should not get Establishment from DB when establishment not exists")
+    @DisplayName("Deve não achar um estabelecimento por Documento")
     void findEstablishmentByDocumentCase2() {
         String document = "123456781";
         Optional<Establishment> result = this.establishmentRepository.findEstablishmentByDocument(document);
