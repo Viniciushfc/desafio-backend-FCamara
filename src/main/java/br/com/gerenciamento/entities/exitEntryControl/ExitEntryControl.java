@@ -1,7 +1,7 @@
-package br.com.gerenciamento.domain.exitEntryControl;
+package br.com.gerenciamento.entities.exitEntryControl;
 
-import br.com.gerenciamento.domain.establishment.Establishment;
-import br.com.gerenciamento.domain.vehicle.Vehicle;
+import br.com.gerenciamento.entities.establishment.Establishment;
+import br.com.gerenciamento.entities.vehicle.Vehicle;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;

@@ -1,4 +1,4 @@
-package br.com.gerenciamento.domain.vehicle;
+package br.com.gerenciamento.entities.vehicle;
 
 public enum TypeVehicle {
     BIKE,

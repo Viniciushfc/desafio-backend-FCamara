@@ -1,7 +1,7 @@
 package br.com.gerenciamento.services;
 
 
-import br.com.gerenciamento.domain.vehicle.Vehicle;
+import br.com.gerenciamento.entities.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
 import br.com.gerenciamento.infra.exception.MissingInformationException;
 import br.com.gerenciamento.infra.exception.NoDataFoundException;

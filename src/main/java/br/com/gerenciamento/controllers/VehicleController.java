@@ -1,6 +1,6 @@
 package br.com.gerenciamento.controllers;
 
-import br.com.gerenciamento.domain.vehicle.Vehicle;
+import br.com.gerenciamento.entities.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
 import br.com.gerenciamento.services.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;

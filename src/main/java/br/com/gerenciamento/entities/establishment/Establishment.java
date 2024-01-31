@@ -1,4 +1,4 @@
-package br.com.gerenciamento.domain.establishment;
+package br.com.gerenciamento.entities.establishment;
 
 
 import br.com.gerenciamento.dtos.EstablishmentDTO;

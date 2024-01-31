@@ -1,7 +1,7 @@
 package br.com.gerenciamento.infra.repositories;
 
 
-import br.com.gerenciamento.domain.vehicle.Vehicle;
+import br.com.gerenciamento.entities.vehicle.Vehicle;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

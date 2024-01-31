@@ -1,6 +1,6 @@
 package br.com.gerenciamento.services;
 
-import br.com.gerenciamento.domain.establishment.Establishment;
+import br.com.gerenciamento.entities.establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
 import br.com.gerenciamento.infra.exception.MissingInformationException;
 import br.com.gerenciamento.infra.exception.NoDataFoundException;

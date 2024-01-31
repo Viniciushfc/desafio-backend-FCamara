@@ -1,6 +1,6 @@
 package br.com.gerenciamento.infra.util;
 
-import br.com.gerenciamento.domain.exitEntryControl.ExitEntryControl;
+import br.com.gerenciamento.entities.exitEntryControl.ExitEntryControl;
 
 import java.time.Duration;
 

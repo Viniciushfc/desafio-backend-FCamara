@@ -1,6 +1,6 @@
 package br.com.gerenciamento.infra.repositories;
 
-import br.com.gerenciamento.domain.establishment.Establishment;
+import br.com.gerenciamento.entities.establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;

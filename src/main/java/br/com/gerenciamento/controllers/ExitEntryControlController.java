@@ -1,6 +1,6 @@
 package br.com.gerenciamento.controllers;
 
-import br.com.gerenciamento.domain.exitEntryControl.ExitEntryControl;
+import br.com.gerenciamento.entities.exitEntryControl.ExitEntryControl;
 import br.com.gerenciamento.dtos.ExitEntryControlDTO;
 import br.com.gerenciamento.services.ExitEntryControlService;
 import org.springframework.beans.factory.annotation.Autowired;
