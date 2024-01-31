@@ -28,7 +28,7 @@ class EstablishmentRepositoryTest {
     @DisplayName("Deve achar um estabelecimento por Documento")
     void findEstablishmentByDocumentCase1() {
         String document = "123456781";
-        EstablishmentDTO dto = new EstablishmentDTO("Estabelecimento", document, "Ali mesmo", "(99)99999-9998", 10L, 10L);
+        EstablishmentDTO dto = new EstablishmentDTO("Estabelecimento", document, "Ali mesmo", "(99)99999-9998", 10, 10);
         this.createEstablishment(dto);
         Optional<Establishment> result = this.establishmentRepository.findEstablishmentByDocument(document);
 
