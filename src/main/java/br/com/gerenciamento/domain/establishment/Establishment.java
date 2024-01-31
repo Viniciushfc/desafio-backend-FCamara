@@ -30,9 +30,9 @@ public class Establishment {
     @NotBlank(message = "Telephone is mandatory")
     private String telephone;
     @NotNull(message = "Vacancies Bike is mandatory")
-    private Long amountVacanciesBike;
+    private Integer amountVacanciesBike;
     @NotNull(message = "Vacancies Car is mandatory")
-    private Long amountVacanciesCar;
+    private Integer amountVacanciesCar;
 
 
     public Establishment(EstablishmentDTO dto){
