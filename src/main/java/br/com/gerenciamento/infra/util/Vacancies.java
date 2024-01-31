@@ -2,9 +2,9 @@ package br.com.gerenciamento.infra.util;
 
 import br.com.gerenciamento.domain.exitEntryControl.ExitEntryControl;
 
-public class VerificationVacancies {
+public class Vacancies {
 
-    public static void verificaVagas(ExitEntryControl exitEntryControl){
+    public static void verificationVacancies(ExitEntryControl exitEntryControl) {
 
         switch (exitEntryControl.getVehicle().getTypeVehicle()) {
             case BIKE:
@@ -22,6 +22,20 @@ public class VerificationVacancies {
                 }
                 break;
             default:
+        }
+    }
+
+    public static void assignsVacancy(ExitEntryControl exitEntryControl) {
+        if (exitEntryControl.getExit() != null) {
+            switch (exitEntryControl.getVehicle().getTypeVehicle()) {
+                case BIKE:
+                    exitEntryControl.getEstablishment().setAmountVacanciesBike(exitEntryControl.getEstablishment().getAmountVacanciesBike() + 1);
+                    break;
+                case CAR:
+                    exitEntryControl.getEstablishment().setAmountVacanciesCar(exitEntryControl.getEstablishment().getAmountVacanciesCar() + 1);
+                    break;
+                default:
+            }
         }
     }
 }

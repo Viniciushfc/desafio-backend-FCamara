@@ -17,7 +17,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static br.com.gerenciamento.infra.util.PriceExitControl.priceExitControl;
-import static br.com.gerenciamento.infra.util.VerificationVacancies.verificaVagas;
+import static br.com.gerenciamento.infra.util.Vacancies.assignsVacancy;
+import static br.com.gerenciamento.infra.util.Vacancies.verificationVacancies;
 
 @Service
 public class ExitEntryControlService {
@@ -46,7 +47,7 @@ public class ExitEntryControlService {
             exitEntryControl.setVehicle(vehicleOptional.get());
             exitEntryControl.setEstablishment(establishmentOptional.get());
 
-            verificaVagas(exitEntryControl);
+            verificationVacancies(exitEntryControl);
 
             this.saveExitEntryControl(exitEntryControl);
 
@@ -79,7 +80,7 @@ public class ExitEntryControlService {
             exitEntryControl.setVehicle(vehicleOptional.get());
             exitEntryControl.setEstablishment(establishmentOptional.get());
 
-            verificaVagas(exitEntryControl);
+            verificationVacancies(exitEntryControl);
 
             saveExitEntryControl(exitEntryControl);
 
@@ -92,7 +93,6 @@ public class ExitEntryControlService {
         throw new MissingInformationException("Impossível completar a operação devido à falta de informações necessárias. Por favor, verifique se todos os campos obrigatórios estão preenchidos corretamente.");
     }
 
-
     //Atualizar o controle de saída/entrada e realizar os cálculos dos valores a serem cobrados.
     public ExitEntryControl updateExitControl(Long id) {
         Optional<ExitEntryControl> exitEntryControlOptional = exitEntryControlRepository.findExitEntryControlById(id);
@@ -103,6 +103,8 @@ public class ExitEntryControlService {
 
             exitEntryControl.setExit(LocalDateTime.now());
             exitEntryControl.setPrice(priceExitControl(exitEntryControl));
+
+            assignsVacancy(exitEntryControl);
 
             saveExitEntryControl(exitEntryControl);
 
@@ -126,5 +128,6 @@ public class ExitEntryControlService {
         exitEntryControlOptional.ifPresent(exitEntryControl -> this.exitEntryControlRepository.delete(exitEntryControl));
         return null;
     }
+
 
 }

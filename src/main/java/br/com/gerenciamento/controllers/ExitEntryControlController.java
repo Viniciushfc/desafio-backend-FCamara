@@ -18,7 +18,7 @@ public class ExitEntryControlController {
     private ExitEntryControlService exitEntryControlService;
 
     @PostMapping
-    public ResponseEntity<ExitEntryControl> createExitEntryControl(@RequestBody ExitEntryControlDTO dto){
+    public ResponseEntity<ExitEntryControl> createExitEntryControl(@RequestBody ExitEntryControlDTO dto) {
         ExitEntryControl exitEntryControl = exitEntryControlService.createExitEntryControl(dto);
         return new ResponseEntity<>(exitEntryControl, HttpStatus.CREATED);
     }
@@ -36,19 +36,19 @@ public class ExitEntryControlController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ExitEntryControl> updateExitControl(@PathVariable Long id){
+    public ResponseEntity<ExitEntryControl> updateExitControl(@PathVariable Long id) {
         ExitEntryControl exitEntryControl = exitEntryControlService.updateExitControl(id);
         return new ResponseEntity<>(exitEntryControl, HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<ExitEntryControl> updateExitEntryControl(@PathVariable Long id, @RequestBody ExitEntryControlDTO dto){
+    public ResponseEntity<ExitEntryControl> updateExitEntryControl(@PathVariable Long id, @RequestBody ExitEntryControlDTO dto) {
         ExitEntryControl exitEntryControl = exitEntryControlService.updateExitEntryControl(id, dto);
         return new ResponseEntity<>(exitEntryControl, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteExitEntryControl(@PathVariable Long id){
+    public void deleteExitEntryControl(@PathVariable Long id) {
         ExitEntryControl exitEntryControl = exitEntryControlService.deleteExitEntryControlById(id);
     }
 
