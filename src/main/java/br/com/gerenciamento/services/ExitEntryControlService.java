@@ -4,11 +4,11 @@ import br.com.gerenciamento.entities.establishment.Establishment;
 import br.com.gerenciamento.entities.exitEntryControl.ExitEntryControl;
 import br.com.gerenciamento.entities.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.ExitEntryControlDTO;
-import br.com.gerenciamento.infra.exception.MissingInformationException;
-import br.com.gerenciamento.infra.exception.NoDataFoundException;
-import br.com.gerenciamento.infra.repositories.EstablishmentRepository;
-import br.com.gerenciamento.infra.repositories.ExitEntryControlRepository;
-import br.com.gerenciamento.infra.repositories.VehicleRepository;
+import br.com.gerenciamento.entities.exitEntryControl.infra.exception.MissingInformationException;
+import br.com.gerenciamento.entities.exitEntryControl.infra.exception.NoDataFoundException;
+import br.com.gerenciamento.entities.exitEntryControl.infra.repositories.EstablishmentRepository;
+import br.com.gerenciamento.entities.exitEntryControl.infra.repositories.ExitEntryControlRepository;
+import br.com.gerenciamento.entities.exitEntryControl.infra.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +16,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static br.com.gerenciamento.infra.util.PriceExitControl.priceExitControl;
-import static br.com.gerenciamento.infra.util.Vacancies.assignsVacancy;
-import static br.com.gerenciamento.infra.util.Vacancies.verificationVacancies;
+import static br.com.gerenciamento.entities.exitEntryControl.infra.util.PriceExitControl.priceExitControl;
+import static br.com.gerenciamento.entities.exitEntryControl.infra.util.Vacancies.assignsVacancy;
+import static br.com.gerenciamento.entities.exitEntryControl.infra.util.Vacancies.verificationVacancies;
 
 @Service
 public class ExitEntryControlService {

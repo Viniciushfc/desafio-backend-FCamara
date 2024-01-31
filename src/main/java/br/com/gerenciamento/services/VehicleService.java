@@ -3,9 +3,9 @@ package br.com.gerenciamento.services;
 
 import br.com.gerenciamento.entities.vehicle.Vehicle;
 import br.com.gerenciamento.dtos.VehicleDTO;
-import br.com.gerenciamento.infra.exception.MissingInformationException;
-import br.com.gerenciamento.infra.exception.NoDataFoundException;
-import br.com.gerenciamento.infra.repositories.VehicleRepository;
+import br.com.gerenciamento.entities.exitEntryControl.infra.exception.MissingInformationException;
+import br.com.gerenciamento.entities.exitEntryControl.infra.exception.NoDataFoundException;
+import br.com.gerenciamento.entities.exitEntryControl.infra.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

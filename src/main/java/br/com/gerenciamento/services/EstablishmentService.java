@@ -2,9 +2,9 @@ package br.com.gerenciamento.services;
 
 import br.com.gerenciamento.entities.establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
-import br.com.gerenciamento.infra.exception.MissingInformationException;
-import br.com.gerenciamento.infra.exception.NoDataFoundException;
-import br.com.gerenciamento.infra.repositories.EstablishmentRepository;
+import br.com.gerenciamento.entities.exitEntryControl.infra.exception.MissingInformationException;
+import br.com.gerenciamento.entities.exitEntryControl.infra.exception.NoDataFoundException;
+import br.com.gerenciamento.entities.exitEntryControl.infra.repositories.EstablishmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

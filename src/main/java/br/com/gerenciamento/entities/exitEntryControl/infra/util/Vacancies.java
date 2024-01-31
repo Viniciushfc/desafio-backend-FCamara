@@ -1,9 +1,11 @@
-package br.com.gerenciamento.infra.util;
+package br.com.gerenciamento.entities.exitEntryControl.infra.util;
 
 import br.com.gerenciamento.entities.exitEntryControl.ExitEntryControl;
 
+//Classe Util responsavel pelas vagas
 public class Vacancies {
 
+    // Verifica se o estabelecimento ainda possui vagas disponíveis
     public static void verificationVacancies(ExitEntryControl exitEntryControl) {
 
         switch (exitEntryControl.getVehicle().getTypeVehicle()) {
@@ -25,6 +27,7 @@ public class Vacancies {
         }
     }
 
+    // Aqui são atribuídas vagas quando é dada a saída de um veículo
     public static void assignsVacancy(ExitEntryControl exitEntryControl) {
         if (exitEntryControl.getExit() != null) {
             switch (exitEntryControl.getVehicle().getTypeVehicle()) {

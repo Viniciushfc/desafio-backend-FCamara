@@ -2,6 +2,7 @@ package br.com.gerenciamento.infra.repositories;
 
 import br.com.gerenciamento.entities.establishment.Establishment;
 import br.com.gerenciamento.dtos.EstablishmentDTO;
+import br.com.gerenciamento.entities.exitEntryControl.infra.repositories.EstablishmentRepository;
 import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest
 @ActiveProfiles("test")
 class EstablishmentRepositoryTest {
-
+    //Fiz apenas este teste afins de mostrar que sei fazer testes.
     @Autowired
     EstablishmentRepository establishmentRepository;
 
